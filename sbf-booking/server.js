@@ -14,7 +14,7 @@ app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // SQLite database (persistent if using Render disk)
 const db = new sqlite3.Database('../data/bookings.db', err => {
@@ -79,8 +79,12 @@ app.post('/api/book', (req, res) => {
 });
 
 // Serve pages
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
-app.get('/requests', (req, res) => res.sendFile(path.join(__dirname, '../public/requests.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/index.html', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/booking.html', (req, res) => res.sendFile(path.join(__dirname, 'booking.html')));
+app.get('/portfolio.html', (req, res) => res.sendFile(path.join(__dirname, 'portfolio.html')));
+app.get('/requests.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'requests.html')));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
