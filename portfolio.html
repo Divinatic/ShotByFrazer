@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio — Shot By Frazer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html {
+  font-size: clamp(14px, 1vw, 16px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #dcdcdc;
+  color: #111;
+}
+
+/* VARIABLES */
+:root {
+  --bg: #f4f4f4;
+  --panel: #ffffff;
+  --text: #111;
+  --muted: #777;
+  --accent: #3b82f6;
+}
+
+/* FRAME */
+.frame {
+  width: 92%;
+  height: 86vh;
+  margin: 7vh auto;
+  background: var(--bg);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+  padding: 50px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f8f8f8;
+}
+
+.brand-logo img {
+  width: 180px;
+  display: block;
+}
+
+.nav {
+  margin-top: 60px;
+  list-style: none;
+}
+
+.nav li {
+  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.25s ease;
+}
+.nav a {
+  text-decoration: none; /* remove underline */
+  color: var(--muted);   /* normal muted text color */
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--text);    /* darker text on hover */
+}
+
+.nav li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav li:hover {
+  color: var(--text);
+}
+
+.nav li:hover::after {
+  width: 100%;
+}
+
+/* ACCENT LINE */
+.accent-line {
+  position: absolute;
+  left: 260px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+/* MAIN */
+.main {
+  padding: 50px 60px;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 60px;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  background: #ddd;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.grid-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.grid-item:hover img {
+  transform: scale(1.05);
+  filter: contrast(1.05);
+}
+
+.grid-item:hover::after {
+  opacity: 1;
+}
+
+/* CENTER LOGO */
+.center-logo {
+  position: absolute;
+  top: 50%;
+  left: calc(260px + 50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.center-logo img {
+  width: 90px;
+}
+
+/* FOOTER BRAND */
+.footer-brand {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .frame {
+    grid-template-columns: 1fr;
+  }
+
+  .accent-line {
+    display: none;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    padding: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .center-logo {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+  <div class="accent-line"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand-logo">
+        <img src="images/sbflogo.png" alt="SBF Logo">
+      </div>
+      <ul class="nav">
+        <li><a href="homepage.html">SERVICES</a></li>
+        <li><a href="sbf-booking/public/index.html">BOOKING</a></li>
+        <li><a href="portfolio.html">PORTFOLIO</a></li>
+        <li><a href="homepage.html#contact">CONTACT</a></li>
+      </ul>
+
+    </div>
+
+    <div style="font-size:11px;color:#999;">
+      Burpengary, QLD, Australia<br>
+      images/frazerpoole@example.com<br>
+      415-6767-690
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- CENTER LOGO -->
+    <div class="center-logo">
+      <img src="images/sbflogo.png" alt="Logo">
+    </div>
+
+    <!-- PORTFOLIO GRID -->
+    <section class="grid">
+      <script>
+        const images = [
+          "images/frazer1.jpg",
+          "images/frazer2.jpg",
+          "images/frazer3.jpg",
+          "images/frazer4.jpg",
+          "images/frazer5.jpg",
+          "images/frazer6.jpg",
+          "images/frazer7.jpg",
+          "images/frazer8.jpg",
+          "images/frazer9.jpg",
+          "images/frazer10.jpg",
+          "images/frazer11.jpg",
+          "images/frazer12.jpg",
+          "images/frazer13.jpg",
+          "images/frazer14.jpg"
+        ];
+
+        const shuffled = images.sort(() => 0.5 - Math.random()).slice(0, 12);
+        const grid = document.querySelector(".grid");
+
+        shuffled.forEach((img) => {
+          const div = document.createElement("div");
+          div.className = "grid-item";
+          div.innerHTML = `<img src="${img}" alt="Photography">`;
+          grid.appendChild(div);
+        });
+      </script>
+    </section>
+
+    <div class="footer-brand">Shot By Frazer</div>
+  </main>
+</div>
+
+</body>
+</html>
