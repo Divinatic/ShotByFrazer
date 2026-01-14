@@ -83,7 +83,7 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/index.html', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/booking.html', (req, res) => res.sendFile(path.join(__dirname, 'booking.html')));
 app.get('/portfolio.html', (req, res) => res.sendFile(path.join(__dirname, 'portfolio.html')));
-app.get('/requests.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'requests.html')));
+app.get('/requests.html', (req, res) => res.sendFile(path.join(__dirname, 'requests.html')));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
