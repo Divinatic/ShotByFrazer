@@ -14,6 +14,8 @@ app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(__dirname)); // ← REQUIRED
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // SQLite database (persistent if using Render disk)
