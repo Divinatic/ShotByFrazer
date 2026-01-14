@@ -153,6 +153,40 @@ html, body {
   width: 100%;
 }
 
+  .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.day-option {
+  display: block;
+  width: 60px;
+  padding: 14px 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.day-option input {
+  display: none;
+}
+
+/* FULL BOX ACTIVE STATE */
+.day-option input:checked + span {
+  color: #fff;
+}
+
+.day-option:has(input:checked) {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
 /* ACCENT LINE */
 .accent-line {
   position: absolute;
@@ -326,26 +360,38 @@ button:hover {
       </p>
 
       <form action="https://formspree.io/f/xnjjqeyw" method="POST">
-        <div class="calendar-grid">
-          <label>
-            <input type="radio" name="date" value="Mon" required><span>Mon</span>
-          </label>
-          <label>
-            <input type="radio" name="date" value="Tue"><span>Tue</span>
-          </label>
-          <label>
-            <input type="radio" name="date" value="Wed"><span>Wed</span>
-          </label>
-          <label>
-            <input type="radio" name="date" value="Thu"><span>Thu</span>
-          </label>
-          <label>
-            <input type="radio" name="date" value="Fri"><span>Fri</span>
-          </label>
-          <label>
-            <input type="radio" name="date" value="Sat"><span>Sat</span>
-          </label>
-        </div>
+      <div class="calendar-grid">
+        <label class="day-option">
+          <input type="radio" name="date" value="Mon" required>
+          <span>Mon</span>
+        </label>
+      
+        <label class="day-option">
+          <input type="radio" name="date" value="Tue">
+          <span>Tue</span>
+        </label>
+      
+        <label class="day-option">
+          <input type="radio" name="date" value="Wed">
+          <span>Wed</span>
+        </label>
+      
+        <label class="day-option">
+          <input type="radio" name="date" value="Thu">
+          <span>Thu</span>
+        </label>
+      
+        <label class="day-option">
+          <input type="radio" name="date" value="Fri">
+          <span>Fri</span>
+        </label>
+      
+        <label class="day-option">
+          <input type="radio" name="date" value="Sat">
+          <span>Sat</span>
+        </label>
+      </div>
+
 
         <div>
           <label>Name</label>
