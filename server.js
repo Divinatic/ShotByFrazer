@@ -19,7 +19,7 @@ app.use(express.static(__dirname)); // ← REQUIRED
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // SQLite database (persistent if using Render disk)
-const db = new sqlite3.Database('sbf-booking/data/bookings.db', err => {
+const db = new sqlite3.Database('bookings.db', err => {
   if (err) console.error(err);
   else console.log('SQLite ready');
 });
