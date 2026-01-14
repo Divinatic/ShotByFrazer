@@ -69,12 +69,17 @@ app.get('/api/bookings', (req, res) => {
 
 // Add booking
 app.post('/api/book', (req, res) => {
-  const { name, email, date, time, message } = req.body;
+  const { name, email, date, message } = req.body;
+
   db.run(
-    `INSERT INTO bookings (name, email, date, time, message) VALUES (?, ?, ?, ?, ?)`,
-    [name, email, date, time, message],
-    function (err) {
-      if (err) return res.status(500).json({ error: err.message });
+    `INSERT INTO bookings (name, email, date, time, message)
+     VALUES (?, ?, ?, ?, ?)`,
+    [name, email, date, null, message],
+    err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.message });
+      }
       res.json({ success: true });
     }
   );
