@@ -58,6 +58,50 @@ html, body {
   background: #f8f8f8;
 }
 
+
+  /* BOOKING LAYOUT */
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* IMAGE BOX */
+.booking-image {
+  width: 100%;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ddd;
+  position: relative;
+}
+
+.booking-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* subtle motion like portfolio */
+.booking-image img.fade-out {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-image {
+    height: 300px;
+  }
+}
+
+
 .brand-logo img {
   width: 180px;
   height: auto;
@@ -331,7 +375,39 @@ button:hover {
 
   <div class="footer-brand">Shot By Frazer</div>
 </main>
-
 </div>
+<script>
+  const bookingImages = [
+    "images/frazer1.jpg",
+    "images/frazer2.jpg",
+    "images/frazer3.jpg",
+    "images/frazer4.jpg",
+    "images/frazer5.jpg",
+    "images/frazer6.jpg",
+    "images/frazer7.jpg",
+    "images/frazer8.jpg",
+    "images/frazer9.jpg",
+    "images/frazer10.jpg",
+    "images/frazer11.jpg",
+    "images/frazer12.jpg",
+    "images/frazer13.jpg",
+    "images/frazer.jpg"
+  ];
+
+  let index = 0;
+  const img = document.getElementById("bookingSlideshow");
+
+  setInterval(() => {
+    img.classList.add("fade-out");
+
+    setTimeout(() => {
+      index = (index + 1) % bookingImages.length;
+      img.src = bookingImages[index];
+      img.classList.remove("fade-out");
+    }, 400);
+
+  }, 3500);
+</script>
+
 </body>
 </html>
