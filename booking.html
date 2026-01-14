@@ -257,7 +257,7 @@ button:hover {
 
       <!-- BOOKING FORM (Node backend version) -->
       <form id="bookingForm">
-        <input type="hidden" name="day" id="selectedDay">
+        <input type="hidden" name="date" id="selectedDay">
 
         <div>
           <label>Name</label>
@@ -286,39 +286,73 @@ button:hover {
 </div>
 
 <script>
+// --------------------
 // Calendar day selection
+// --------------------
 const days = document.querySelectorAll(".day");
 const hiddenInput = document.getElementById("selectedDay");
 
 days.forEach(day => {
   day.addEventListener("click", () => {
+    // Remove previous active
     days.forEach(d => d.classList.remove("active"));
+
+    // Set new active
     day.classList.add("active");
-    hiddenInput.value = day.textContent;
+
+    // Store value in hidden input
+    hiddenInput.value = day.textContent.trim();
   });
 });
 
-// Submit to Node backend
+// --------------------
+// Booking form submission
+// --------------------
 const bookingForm = document.getElementById("bookingForm");
+
 bookingForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  // Require a selected day
+  if (!hiddenInput.value) {
+    alert("Please select a day first.");
+    return;
+  }
+
+  // Collect form data
   const formData = Object.fromEntries(new FormData(bookingForm).entries());
 
-  const res = await fetch('/api/book', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-  });
+  try {
+    const res = await fetch('/api/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
 
-  const result = await res.json();
-  document.getElementById("status").textContent = result.success
-    ? "Booking sent! I’ll contact you soon."
-    : "Error sending booking.";
+    const result = await res.json();
 
-  bookingForm.reset();
-  days.forEach(d => d.classList.remove("active"));
+    if (result.success) {
+      // Show success message
+      document.getElementById("status").textContent =
+        "Booking sent! I’ll contact you soon.";
+
+      // Reset form and calendar selection
+      bookingForm.reset();
+      hiddenInput.value = "";
+      days.forEach(d => d.classList.remove("active"));
+    } else {
+      document.getElementById("status").textContent =
+        "Error sending booking. Please try again.";
+    }
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById("status").textContent =
+      "Network error. Please try again.";
+  }
 });
 </script>
+
 
 </body>
 </html>
