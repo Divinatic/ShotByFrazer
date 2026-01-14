@@ -294,13 +294,10 @@ const hiddenInput = document.getElementById("selectedDay");
 
 days.forEach(day => {
   day.addEventListener("click", () => {
-    // Remove previous active
+    // highlight the selected day
     days.forEach(d => d.classList.remove("active"));
-
-    // Set new active
     day.classList.add("active");
-
-    // Store value in hidden input
+    // store value in hidden input
     hiddenInput.value = day.textContent.trim();
   });
 });
@@ -319,7 +316,6 @@ bookingForm.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Collect form data
   const formData = Object.fromEntries(new FormData(bookingForm).entries());
 
   try {
@@ -332,26 +328,26 @@ bookingForm.addEventListener("submit", async (e) => {
     const result = await res.json();
 
     if (result.success) {
-      // Show success message
       document.getElementById("status").textContent =
         "Booking sent! I’ll contact you soon.";
 
-      // Reset form and calendar selection
+      // Reset form and calendar
       bookingForm.reset();
       hiddenInput.value = "";
       days.forEach(d => d.classList.remove("active"));
     } else {
       document.getElementById("status").textContent =
-        "Error sending booking. Please try again.";
+        "Error sending booking. Try again.";
     }
 
   } catch (err) {
     console.error(err);
     document.getElementById("status").textContent =
-      "Network error. Please try again.";
+      "Network error. Try again.";
   }
 });
 </script>
+
 
 
 </body>
