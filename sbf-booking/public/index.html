@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Booking — Shot By Frazer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html {
+  font-size: clamp(14px, 1vw, 16px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #dcdcdc;
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+:root {
+  --bg: #f4f4f4;
+  --text: #111;
+  --muted: #777;
+  --accent: #3b82f6;
+}
+
+/* FRAME */
+.frame {
+  width: 92%;
+  height: 86vh;
+  margin: 7vh auto;
+  background: var(--bg);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+  padding: 50px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f8f8f8;
+}
+
+.brand-logo img {
+  width: 180px;
+  display: block;
+}
+
+.nav {
+  margin-top: 60px;
+  list-style: none;
+}
+
+.nav li {
+  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* MAIN */
+.main {
+  padding: 60px;
+  position: relative;
+}
+
+/* BOOKING */
+.booking {
+  max-width: 520px;
+}
+
+.booking h1 {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.booking p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+/* FAKE CALENDAR */
+.calendar {
+  margin-bottom: 36px;
+}
+
+.calendar h3 {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.day {
+  padding: 14px 0;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.day:hover {
+  background: #111;
+  color: #fff;
+}
+
+.day.active {
+  background: #111;
+  color: #fff;
+}
+
+/* FORM */
+form {
+  display: grid;
+  gap: 22px;
+}
+
+.nav a {
+  text-decoration: none; /* remove underline */
+  color: var(--muted);   /* normal muted text color */
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--text);    /* darker text on hover */
+}
+
+label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 14px 0;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid #111;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+button:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* FOOTER BRAND */
+.footer-brand {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand-logo">
+        <img src="../../images/sbflogo.png" alt="SBF Logo">
+      </div>
+
+      <ul class="nav">
+        <li><a href="homepage.html">SERVICES</a></li>
+        <li><a href="sbf-booking/public/index.html">BOOKING</a></li>
+        <li><a href="portfolio.html">PORTFOLIO</a></li>
+        <li><a href="homepage.html#contact">CONTACT</a></li>
+      </ul>
+    </div>
+
+    <div style="font-size:11px;color:#999;">
+      2025, Rights Reserved by SBF
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <section class="booking">
+      <h1>Booking</h1>
+      <p>
+        Select a day that suits you and leave your details below.
+        I’ll be in touch to confirm availability.
+      </p>
+
+      <!-- FAKE CALENDAR -->
+      <div class="calendar">
+        <h3>Available Days</h3>
+        <div class="calendar-grid">
+          <div class="day">Mon</div>
+          <div class="day">Tue</div>
+          <div class="day">Wed</div>
+          <div class="day">Thu</div>
+          <div class="day">Fri</div>
+          <div class="day">Sat</div>
+        </div>
+      </div>
+
+      <!-- BOOKING FORM (Node backend version) -->
+      <form id="bookingForm">
+        <input type="hidden" name="day" id="selectedDay">
+
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+
+        <div>
+          <label>Notes</label>
+          <textarea name="message" placeholder="Car, location, time preference, etc."></textarea>
+        </div>
+
+        <button type="submit">Request Booking</button>
+      </form>
+
+      <p id="status" style="margin-top:10px;font-size:13px;color:var(--accent);"></p>
+    </section>
+
+    <div class="footer-brand">Shot By Frazer</div>
+  </main>
+
+</div>
+
+<script>
+// Calendar day selection
+const days = document.querySelectorAll(".day");
+const hiddenInput = document.getElementById("selectedDay");
+
+days.forEach(day => {
+  day.addEventListener("click", () => {
+    days.forEach(d => d.classList.remove("active"));
+    day.classList.add("active");
+    hiddenInput.value = day.textContent;
+  });
+});
+
+// Submit to Node backend
+const bookingForm = document.getElementById("bookingForm");
+bookingForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = Object.fromEntries(new FormData(bookingForm).entries());
+
+  const res = await fetch('/api/book', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  });
+
+  const result = await res.json();
+  document.getElementById("status").textContent = result.success
+    ? "Booking sent! I’ll contact you soon."
+    : "Error sending booking.";
+
+  bookingForm.reset();
+  days.forEach(d => d.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>
