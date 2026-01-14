@@ -11,20 +11,31 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
-  height: 100%;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #dcdcdc;
-  color: #111;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
 }
 
 :root {
   --bg: #f4f4f4;
+  --panel: #ffffff;
   --text: #111;
   --muted: #777;
   --accent: #3b82f6;
+  --line: #ccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #dcdcdc;
+  color: var(--text);
 }
 
 /* FRAME */
@@ -39,6 +50,16 @@ body {
   position: relative;
 }
 
+/* ACCENT LINE */
+.accent-line {
+  position: absolute;
+  left: 260px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
 /* SIDEBAR */
 .sidebar {
   padding: 50px 35px;
@@ -50,7 +71,19 @@ body {
 
 .brand-logo img {
   width: 180px;
+  height: auto;
   display: block;
+}
+
+.nav a {
+  text-decoration: none; /* remove underline */
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--text);
 }
 
 .nav {
@@ -64,15 +97,36 @@ body {
   letter-spacing: 0.22em;
   color: var(--muted);
   cursor: pointer;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav li:hover {
+  color: var(--text);
+}
+
+.nav li:hover::after {
+  width: 100%;
 }
 
 /* MAIN */
 .main {
-  padding: 60px;
+  padding: 50px 60px;
   position: relative;
 }
 
-/* BOOKING */
+/* BOOKING SECTION */
 .booking {
   max-width: 520px;
 }
@@ -92,40 +146,31 @@ body {
   margin-bottom: 36px;
 }
 
-/* FAKE CALENDAR */
-.calendar {
-  margin-bottom: 36px;
-}
-
-.calendar h3 {
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
+/* CALENDAR / RADIO BUTTONS */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  margin-bottom: 24px;
 }
 
-.day {
+.calendar-grid label {
+  display: inline-block;
+  width: 60px;
   padding: 14px 0;
   text-align: center;
-  font-size: 12px;
   border: 1px solid #ccc;
   cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-.day:hover {
-  background: #111;
-  color: #fff;
+.calendar-grid input[type="radio"] {
+  display: none;
 }
 
-.day.active {
+.calendar-grid input[type="radio"]:checked + span {
   background: #111;
   color: #fff;
 }
@@ -134,17 +179,6 @@ body {
 form {
   display: grid;
   gap: 22px;
-}
-
-.nav a {
-  text-decoration: none; /* remove underline */
-  color: var(--muted);   /* normal muted text color */
-  cursor: pointer;
-  transition: color 0.25s ease;
-}
-
-.nav a:hover {
-  color: var(--text);    /* darker text on hover */
 }
 
 label {
@@ -200,7 +234,7 @@ button:hover {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.45em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.35);
@@ -210,8 +244,8 @@ button:hover {
 </head>
 
 <body>
-
 <div class="frame">
+  <div class="accent-line"></div>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -242,132 +276,50 @@ button:hover {
         I’ll be in touch to confirm availability.
       </p>
 
-      <!-- FAKE CALENDAR -->
-      <div class="calendar">
-        <h3>Available Days</h3>
-        <div class="calendar-grid">
-          <div class="day">Mon</div>
-          <div class="day">Tue</div>
-          <div class="day">Wed</div>
-          <div class="day">Thu</div>
-          <div class="day">Fri</div>
-          <div class="day">Sat</div>
-        </div>
-      </div>
-
-      <!-- BOOKING FORM (Node backend version) -->
+      <!-- FORMSPREE FORM -->
       <form action="https://formspree.io/f/xnjjqeyw" method="POST">
-  <div class="calendar-grid">
-    <label>
-      <input type="radio" name="date" value="Mon" required> Mon
-    </label>
-    <label>
-      <input type="radio" name="date" value="Tue"> Tue
-    </label>
-    <label>
-      <input type="radio" name="date" value="Wed"> Wed
-    </label>
-    <label>
-      <input type="radio" name="date" value="Thu"> Thu
-    </label>
-    <label>
-      <input type="radio" name="date" value="Fri"> Fri
-    </label>
-    <label>
-      <input type="radio" name="date" value="Sat"> Sat
-    </label>
-  </div>
+        <div class="calendar-grid">
+          <label>
+            <input type="radio" name="date" value="Mon" required><span>Mon</span>
+          </label>
+          <label>
+            <input type="radio" name="date" value="Tue"><span>Tue</span>
+          </label>
+          <label>
+            <input type="radio" name="date" value="Wed"><span>Wed</span>
+          </label>
+          <label>
+            <input type="radio" name="date" value="Thu"><span>Thu</span>
+          </label>
+          <label>
+            <input type="radio" name="date" value="Fri"><span>Fri</span>
+          </label>
+          <label>
+            <input type="radio" name="date" value="Sat"><span>Sat</span>
+          </label>
+        </div>
 
-  <div>
-    <label>Name</label>
-    <input type="text" name="name" required>
-  </div>
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
 
-  <div>
-    <label>Email</label>
-    <input type="email" name="email" required>
-  </div>
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
 
-  <div>
-    <label>Notes</label>
-    <textarea name="message" placeholder="Car, location, time preference, etc."></textarea>
-  </div>
+        <div>
+          <label>Notes</label>
+          <textarea name="message" placeholder="Car, location, time preference, etc."></textarea>
+        </div>
 
-  <button type="submit">Request Booking</button>
-</form>
-
-      <p id="status" style="margin-top:10px;font-size:13px;color:var(--accent);"></p>
+        <button type="submit">Request Booking</button>
+      </form>
     </section>
 
     <div class="footer-brand">Shot By Frazer</div>
   </main>
-
 </div>
-
-<script>
-// --------------------
-// Calendar day selection
-// --------------------
-const days = document.querySelectorAll(".day");
-const hiddenInput = document.getElementById("selectedDay");
-
-days.forEach(day => {
-  day.addEventListener("click", () => {
-    // highlight the selected day
-    days.forEach(d => d.classList.remove("active"));
-    day.classList.add("active");
-    // store value in hidden input
-    hiddenInput.value = day.textContent.trim();
-  });
-});
-
-// --------------------
-// Booking form submission
-// --------------------
-const bookingForm = document.getElementById("bookingForm");
-
-bookingForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  // Require a selected day
-  if (!hiddenInput.value) {
-    alert("Please select a day first.");
-    return;
-  }
-
-  const formData = Object.fromEntries(new FormData(bookingForm).entries());
-
-  try {
-    const res = await fetch('/api/book', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await res.json();
-
-    if (result.success) {
-      document.getElementById("status").textContent =
-        "Booking sent! I’ll contact you soon.";
-
-      // Reset form and calendar
-      bookingForm.reset();
-      hiddenInput.value = "";
-      days.forEach(d => d.classList.remove("active"));
-    } else {
-      document.getElementById("status").textContent =
-        "Error sending booking. Try again.";
-    }
-
-  } catch (err) {
-    console.error(err);
-    document.getElementById("status").textContent =
-      "Network error. Try again.";
-  }
-});
-</script>
-
-
-
 </body>
 </html>
