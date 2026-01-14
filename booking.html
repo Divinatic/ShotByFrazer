@@ -71,7 +71,6 @@ html, body {
   overflow: hidden;
   border-radius: 8px;
   background: #ddd;
-  position: relative;
 }
 
 .booking-image img {
@@ -90,7 +89,6 @@ html, body {
   .booking-layout {
     grid-template-columns: 1fr;
   }
-
   .booking-image {
     height: 300px;
   }
@@ -98,8 +96,6 @@ html, body {
 
 .brand-logo img {
   width: 180px;
-  height: auto;
-  display: block;
 }
 
 .nav {
@@ -257,11 +253,8 @@ button:hover {
         <h1>Booking</h1>
         <p>Select a day that suits you and leave your details below.</p>
 
-        <form action="https://formspree.io/f/xnjjqeyw" method="POST">
-
-          <!-- ✅ REDIRECT -->
-          <input type="hidden" name="_next" value="thankyou.html">
-          <input type="hidden" name="_subject" value="New Booking Request">
+        <!-- ✅ FORM UPDATED -->
+        <form id="bookingForm" action="https://formspree.io/f/xnjjqeyw" method="POST">
 
           <div class="calendar-grid">
             <label class="day-option"><input type="radio" name="date" value="Mon" required><span>Mon</span></label>
@@ -302,6 +295,7 @@ button:hover {
 </div>
 
 <script>
+/* slideshow */
 const bookingImages = [
   "images/frazer1.jpg","images/frazer2.jpg","images/frazer3.jpg",
   "images/frazer4.jpg","images/frazer5.jpg","images/frazer6.jpg",
@@ -321,6 +315,29 @@ setInterval(() => {
     img.classList.remove("fade-out");
   }, 400);
 }, 3500);
+
+/* ✅ FORM HANDLER */
+const form = document.getElementById("bookingForm");
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  try {
+    await fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" }
+    });
+
+    window.location.href = "thankyou.html";
+
+  } catch (err) {
+    alert("Submission failed. Please try again.");
+  }
+});
 </script>
+
 </body>
 </html>
