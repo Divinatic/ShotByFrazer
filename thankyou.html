@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thank You — Shot By Frazer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html {
+  font-size: clamp(14px, 1vw, 16px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+:root {
+  --bg: #f4f4f4;
+  --text: #111;
+  --muted: #777;
+  --accent: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #dcdcdc;
+  color: var(--text);
+}
+
+/* FRAME */
+.frame {
+  width: 92%;
+  height: 86vh;
+  margin: 7vh auto;
+  background: var(--bg);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+  padding: 50px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f8f8f8;
+}
+
+.brand-logo img {
+  width: 180px;
+  display: block;
+}
+
+.nav {
+  margin-top: 60px;
+  list-style: none;
+}
+
+.nav li {
+  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  position: relative;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+.nav li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav li:hover::after {
+  width: 100%;
+}
+
+/* ACCENT LINE */
+.accent-line {
+  position: absolute;
+  left: 260px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+/* MAIN */
+.main {
+  padding: 50px 60px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* THANK YOU */
+.thank-you {
+  max-width: 520px;
+}
+
+.thank-you h1 {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.thank-you p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+.thank-you a {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid #111;
+  padding: 14px 32px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.thank-you a:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* FOOTER BRAND */
+.footer-brand {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+<div class="frame">
+  <div class="accent-line"></div>
+
+  <aside class="sidebar">
+    <div>
+      <div class="brand-logo">
+        <img src="images/sbflogo.png" alt="SBF Logo">
+      </div>
+
+      <ul class="nav">
+        <li><a href="index.html">HOMEPAGE</a></li>
+        <li><a href="booking.html">BOOKING</a></li>
+        <li><a href="portfolio.html">PORTFOLIO</a></li>
+        <li><a href="index.html#contact">CONTACT</a></li>
+      </ul>
+    </div>
+
+    <div style="font-size:11px;color:#999;">
+      2025, Rights Reserved by SBF
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="thank-you">
+      <h1>Thank You</h1>
+      <p>
+        Your booking request has been submitted successfully.
+        I’ll be in touch shortly to confirm availability.
+      </p>
+
+      <a href="index.html">Return Home</a>
+    </section>
+
+    <div class="footer-brand">Shot By Frazer</div>
+  </main>
+</div>
+</body>
+</html>
