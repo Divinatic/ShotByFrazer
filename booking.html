@@ -58,8 +58,6 @@ html, body {
   background: #f8f8f8;
 }
 
-
-  /* BOOKING LAYOUT */
 .booking-layout {
   display: grid;
   grid-template-columns: 1fr 420px;
@@ -67,7 +65,6 @@ html, body {
   align-items: flex-start;
 }
 
-/* IMAGE BOX */
 .booking-image {
   width: 100%;
   height: 560px;
@@ -84,13 +81,11 @@ html, body {
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* subtle motion like portfolio */
 .booking-image img.fade-out {
   opacity: 0;
   transform: scale(1.03);
 }
 
-/* MOBILE */
 @media (max-width: 900px) {
   .booking-layout {
     grid-template-columns: 1fr;
@@ -100,7 +95,6 @@ html, body {
     height: 300px;
   }
 }
-
 
 .brand-logo img {
   width: 180px;
@@ -116,78 +110,14 @@ html, body {
 .nav a {
   text-decoration: none;
   color: var(--muted);
-  cursor: pointer;
-  transition: color 0.25s ease;
-}
-
-.nav a:hover {
-  color: var(--text);
 }
 
 .nav li {
   margin-bottom: 18px;
   font-size: 12px;
   letter-spacing: 0.22em;
-  color: var(--muted);
-  cursor: pointer;
-  position: relative;
-  transition: color 0.25s ease;
 }
 
-.nav li::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.25s ease;
-}
-
-.nav li:hover {
-  color: var(--text);
-}
-
-.nav li:hover::after {
-  width: 100%;
-}
-
-  .calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.day-option {
-  display: block;
-  width: 60px;
-  padding: 14px 0;
-  text-align: center;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  font-size: 12px;
-  text-transform: uppercase;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-
-.day-option input {
-  display: none;
-}
-
-/* FULL BOX ACTIVE STATE */
-.day-option input:checked + span {
-  color: #fff;
-}
-
-.day-option:has(input:checked) {
-  background: #111;
-  color: #fff;
-  border-color: #111;
-}
-
-/* ACCENT LINE */
 .accent-line {
   position: absolute;
   left: 260px;
@@ -197,13 +127,10 @@ html, body {
   background: linear-gradient(to bottom, var(--accent), transparent);
 }
 
-/* MAIN */
 .main {
   padding: 50px 60px;
   position: relative;
 }
-
-/* ===== BOOKING PAGE ONLY ===== */
 
 .booking {
   max-width: 520px;
@@ -211,7 +138,6 @@ html, body {
 
 .booking h1 {
   font-size: 22px;
-  font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -220,11 +146,9 @@ html, body {
 .booking p {
   font-size: 14px;
   color: var(--muted);
-  line-height: 1.7;
   margin-bottom: 36px;
 }
 
-/* CALENDAR */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -232,8 +156,7 @@ html, body {
   margin-bottom: 24px;
 }
 
-.calendar-grid label {
-  display: inline-block;
+.day-option {
   width: 60px;
   padding: 14px 0;
   text-align: center;
@@ -241,19 +164,18 @@ html, body {
   cursor: pointer;
   font-size: 12px;
   text-transform: uppercase;
-  transition: background 0.25s ease, color 0.25s ease;
 }
 
-.calendar-grid input {
+.day-option input {
   display: none;
 }
 
-.calendar-grid input:checked + span {
+.day-option:has(input:checked) {
   background: #111;
   color: #fff;
+  border-color: #111;
 }
 
-/* FORM */
 form {
   display: grid;
   gap: 22px;
@@ -274,18 +196,6 @@ textarea {
   border: none;
   border-bottom: 1px solid #ccc;
   background: transparent;
-  outline: none;
-  font-family: inherit;
-}
-
-input:focus,
-textarea:focus {
-  border-bottom-color: var(--accent);
-}
-
-textarea {
-  min-height: 90px;
-  resize: vertical;
 }
 
 button {
@@ -297,7 +207,6 @@ button {
   background: transparent;
   border: 1px solid #111;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
 }
 
 button:hover {
@@ -305,7 +214,6 @@ button:hover {
   color: #fff;
 }
 
-/* FOOTER BRAND */
 .footer-brand {
   position: absolute;
   bottom: 40px;
@@ -315,17 +223,14 @@ button:hover {
   letter-spacing: 0.45em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.35);
-  pointer-events: none;
 }
 </style>
-
 </head>
 
 <body>
 <div class="frame">
   <div class="accent-line"></div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div>
       <div class="brand-logo">
@@ -345,115 +250,77 @@ button:hover {
     </div>
   </aside>
 
-  <!-- MAIN -->
-<!-- MAIN -->
-<main class="main">
+  <main class="main">
+    <div class="booking-layout">
 
-  <div class="booking-layout">
+      <section class="booking">
+        <h1>Booking</h1>
+        <p>Select a day that suits you and leave your details below.</p>
 
-    <!-- BOOKING FORM (UNCHANGED CONTENT) -->
-    <section class="booking">
-      <h1>Booking</h1>
-      <p>
-        Select a day that suits you and leave your details below.
-        I’ll be in touch to confirm availability.
-      </p>
+        <form action="https://formspree.io/f/xnjjqeyw" method="POST">
 
-      <form action="https://formspree.io/f/xnjjqeyw" method="POST">
-      <div class="calendar-grid">
-        <label class="day-option">
-          <input type="radio" name="date" value="Mon" required>
-          <span>Mon</span>
-        </label>
-      
-        <label class="day-option">
-          <input type="radio" name="date" value="Tue">
-          <span>Tue</span>
-        </label>
-      
-        <label class="day-option">
-          <input type="radio" name="date" value="Wed">
-          <span>Wed</span>
-        </label>
-      
-        <label class="day-option">
-          <input type="radio" name="date" value="Thu">
-          <span>Thu</span>
-        </label>
-      
-        <label class="day-option">
-          <input type="radio" name="date" value="Fri">
-          <span>Fri</span>
-        </label>
-      
-        <label class="day-option">
-          <input type="radio" name="date" value="Sat">
-          <span>Sat</span>
-        </label>
+          <!-- ✅ REDIRECT -->
+          <input type="hidden" name="_next" value="thankyou.html">
+          <input type="hidden" name="_subject" value="New Booking Request">
+
+          <div class="calendar-grid">
+            <label class="day-option"><input type="radio" name="date" value="Mon" required><span>Mon</span></label>
+            <label class="day-option"><input type="radio" name="date" value="Tue"><span>Tue</span></label>
+            <label class="day-option"><input type="radio" name="date" value="Wed"><span>Wed</span></label>
+            <label class="day-option"><input type="radio" name="date" value="Thu"><span>Thu</span></label>
+            <label class="day-option"><input type="radio" name="date" value="Fri"><span>Fri</span></label>
+            <label class="day-option"><input type="radio" name="date" value="Sat"><span>Sat</span></label>
+          </div>
+
+          <div>
+            <label>Name</label>
+            <input type="text" name="name" required>
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" required>
+          </div>
+
+          <div>
+            <label>Notes</label>
+            <textarea name="message"></textarea>
+          </div>
+
+          <button type="submit">Request Booking</button>
+        </form>
+      </section>
+
+      <div class="booking-image">
+        <img id="bookingSlideshow" src="images/frazer1.jpg" alt="">
       </div>
 
-
-        <div>
-          <label>Name</label>
-          <input type="text" name="name" required>
-        </div>
-
-        <div>
-          <label>Email</label>
-          <input type="email" name="email" required>
-        </div>
-
-        <div>
-          <label>Notes</label>
-          <textarea name="message" placeholder="Car, location, time preference, etc."></textarea>
-        </div>
-
-        <button type="submit">Request Booking</button>
-      </form>
-    </section>
-
-    <!-- IMAGE SLIDESHOW -->
-    <div class="booking-image">
-      <img id="bookingSlideshow" src="images/frazer1.jpg" alt="Photography">
     </div>
 
-  </div>
-
-  <div class="footer-brand">Shot By Frazer</div>
-</main>
+    <div class="footer-brand">Shot By Frazer</div>
+  </main>
 </div>
+
 <script>
-  const bookingImages = [
-    "images/frazer1.jpg",
-    "images/frazer2.jpg",
-    "images/frazer3.jpg",
-    "images/frazer4.jpg",
-    "images/frazer5.jpg",
-    "images/frazer6.jpg",
-    "images/frazer7.jpg",
-    "images/frazer8.jpg",
-    "images/frazer9.jpg",
-    "images/frazer10.jpg",
-    "images/frazer11.jpg",
-    "images/frazer12.jpg",
-    "images/frazer13.jpg",
-    "images/frazer.jpg"
-  ];
+const bookingImages = [
+  "images/frazer1.jpg","images/frazer2.jpg","images/frazer3.jpg",
+  "images/frazer4.jpg","images/frazer5.jpg","images/frazer6.jpg",
+  "images/frazer7.jpg","images/frazer8.jpg","images/frazer9.jpg",
+  "images/frazer10.jpg","images/frazer11.jpg","images/frazer12.jpg",
+  "images/frazer13.jpg","images/frazer.jpg"
+];
 
-  let index = 0;
-  const img = document.getElementById("bookingSlideshow");
+let index = 0;
+const img = document.getElementById("bookingSlideshow");
 
-  setInterval(() => {
-    img.classList.add("fade-out");
-
-    setTimeout(() => {
-      index = (index + 1) % bookingImages.length;
-      img.src = bookingImages[index];
-      img.classList.remove("fade-out");
-    }, 400);
-
-  }, 3500);
+setInterval(() => {
+  img.classList.add("fade-out");
+  setTimeout(() => {
+    index = (index + 1) % bookingImages.length;
+    img.src = bookingImages[index];
+    img.classList.remove("fade-out");
+  }, 400);
+}, 3500);
 </script>
-
 </body>
 </html>
