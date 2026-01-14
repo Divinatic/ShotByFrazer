@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Booking — Shot By Frazer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 html {
   font-size: clamp(14px, 1vw, 16px);
@@ -50,16 +49,6 @@ html, body {
   position: relative;
 }
 
-/* ACCENT LINE */
-.accent-line {
-  position: absolute;
-  left: 260px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-}
-
 /* SIDEBAR */
 .sidebar {
   padding: 50px 35px;
@@ -75,8 +64,13 @@ html, body {
   display: block;
 }
 
+.nav {
+  margin-top: 60px;
+  list-style: none;
+}
+
 .nav a {
-  text-decoration: none; /* remove underline */
+  text-decoration: none;
   color: var(--muted);
   cursor: pointer;
   transition: color 0.25s ease;
@@ -84,11 +78,6 @@ html, body {
 
 .nav a:hover {
   color: var(--text);
-}
-
-.nav {
-  margin-top: 60px;
-  list-style: none;
 }
 
 .nav li {
@@ -120,13 +109,24 @@ html, body {
   width: 100%;
 }
 
+/* ACCENT LINE */
+.accent-line {
+  position: absolute;
+  left: 260px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
 /* MAIN */
 .main {
   padding: 50px 60px;
   position: relative;
 }
 
-/* BOOKING SECTION */
+/* ===== BOOKING PAGE ONLY ===== */
+
 .booking {
   max-width: 520px;
 }
@@ -146,7 +146,7 @@ html, body {
   margin-bottom: 36px;
 }
 
-/* CALENDAR / RADIO BUTTONS */
+/* CALENDAR */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -166,11 +166,11 @@ html, body {
   transition: background 0.25s ease, color 0.25s ease;
 }
 
-.calendar-grid input[type="radio"] {
+.calendar-grid input {
   display: none;
 }
 
-.calendar-grid input[type="radio"]:checked + span {
+.calendar-grid input:checked + span {
   background: #111;
   color: #fff;
 }
@@ -210,7 +210,6 @@ textarea {
   resize: vertical;
 }
 
-/* BUTTON */
 button {
   margin-top: 20px;
   padding: 14px 0;
@@ -241,6 +240,7 @@ button:hover {
   pointer-events: none;
 }
 </style>
+
 </head>
 
 <body>
