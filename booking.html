@@ -256,26 +256,45 @@ button:hover {
       </div>
 
       <!-- BOOKING FORM (Node backend version) -->
-      <form id="bookingForm">
-        <input type="hidden" name="date" id="selectedDay">
+      <form action="https://formspree.io/f/mayvlkzd" method="POST">
+  <div class="calendar-grid">
+    <label>
+      <input type="radio" name="date" value="Mon" required> Mon
+    </label>
+    <label>
+      <input type="radio" name="date" value="Tue"> Tue
+    </label>
+    <label>
+      <input type="radio" name="date" value="Wed"> Wed
+    </label>
+    <label>
+      <input type="radio" name="date" value="Thu"> Thu
+    </label>
+    <label>
+      <input type="radio" name="date" value="Fri"> Fri
+    </label>
+    <label>
+      <input type="radio" name="date" value="Sat"> Sat
+    </label>
+  </div>
 
-        <div>
-          <label>Name</label>
-          <input type="text" name="name" required>
-        </div>
+  <div>
+    <label>Name</label>
+    <input type="text" name="name" required>
+  </div>
 
-        <div>
-          <label>Email</label>
-          <input type="email" name="email" required>
-        </div>
+  <div>
+    <label>Email</label>
+    <input type="email" name="email" required>
+  </div>
 
-        <div>
-          <label>Notes</label>
-          <textarea name="message" placeholder="Car, location, time preference, etc."></textarea>
-        </div>
+  <div>
+    <label>Notes</label>
+    <textarea name="message" placeholder="Car, location, time preference, etc."></textarea>
+  </div>
 
-        <button type="submit">Request Booking</button>
-      </form>
+  <button type="submit">Request Booking</button>
+</form>
 
       <p id="status" style="margin-top:10px;font-size:13px;color:var(--accent);"></p>
     </section>
